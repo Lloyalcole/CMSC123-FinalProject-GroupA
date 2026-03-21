@@ -239,6 +239,8 @@ make all
 ## Running Tests
  
 Each data structure has its own test file under `tests/`. Tests come in two styles:
+
+![dsameme](dsameme.gif)
  
 **Narrative tests** — operations play out as a story, output is automatic:
  
