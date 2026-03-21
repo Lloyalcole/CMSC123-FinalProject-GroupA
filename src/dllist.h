@@ -5,6 +5,7 @@
 
 using namespace std;
 
+namespace ods {
 template <typename T>
 class DLList : public List<T>
 {
@@ -132,3 +133,4 @@ public:
         return count;
     }
 };
+}

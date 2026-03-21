@@ -1,5 +1,6 @@
 #pragma once
 
+namespace ods {
 template <typename T>
 struct uset 
 {
@@ -8,3 +9,4 @@ struct uset
     virtual bool contains(T x) = 0;
     virtual ~uset() {}
 };
+}

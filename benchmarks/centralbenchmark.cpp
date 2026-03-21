@@ -3,15 +3,17 @@
 #include <vector>
 #include <string>
 #include <cstdlib> 
+#include <iomanip> 
 
 #include "../src/adjacencymatrix.h"
 #include "../src/arraydeque.h"
 #include "../src/arraystack.h"
 #include "../src/chainedhashtable.h"
+#include "../src/dllist.h"
 #include "../src/meldableheap.h"
+#include "../src/redblacktrees.h"
 #include "../src/skiplist.h"
-// #include "../src/linkedlistqueue.h" 
-// #include "../src/redblacktree.h"
+#include "../src/sllistqueue.h" 
 
 using namespace std;
 using namespace std::chrono;
@@ -19,8 +21,11 @@ using namespace std::chrono;
 class BasicBenchmark {
 public:
     static void printHeader() {
-        cout << "\nData Structure\t\tOperation\tCount\t\tTime (ms)" << endl;
-        cout << "------------------------------------------------------------------------" << endl;
+        cout << "\n" << left << setw(20) << "Data Structure" 
+             << setw(20) << "Operation" 
+             << setw(15) << "Count" 
+             << "Time (ms)" << endl;
+        cout << string(65, '-') << endl;
     }
 
     template <typename Func>
@@ -33,26 +38,32 @@ public:
     }
 
     static void printLine(string ds, string op, int n, double time) {
-        cout << ds << "\t\t" << op << "\t" << n << "\t\t" << time << " ms" << endl;
+        cout << left << setw(20) << ds 
+             << setw(20) << op 
+             << setw(15) << n 
+             << fixed << setprecision(4) << time << " ms" << endl;
     }
 };
 
 int main() {
-    const int N_LG = 100000; 
-    const int N_MD = 10000;    
-    const int N_SM = 1000;    
+    const int LargeNum = 100000; 
+    const int MediumNum = 10000;  
+    const int SmallNum = 1000;   
 
     int choice = -1;
 
     while (true) {
-        cout << "\n--- Data Structure Benchmark Tool ---" << endl;
+        cout << "\n--- CMSC123 Central Benchmark Tool ---" << endl;
         cout << "1. Array Stack" << endl;
         cout << "2. Array Deque" << endl;
         cout << "3. SkipList" << endl;
         cout << "4. Chained Hash Table" << endl;
         cout << "5. Meldable Heap" << endl;
         cout << "6. Adjacency Matrix" << endl;
-        cout << "9. Run All Available" << endl;
+        cout << "7. SLL Queue" << endl;
+        cout << "8. Red-Black Tree" << endl;
+        cout << "9. Doubly Linked List (DLList)" << endl;
+        cout << "10. Run All Available" << endl;
         cout << "0. Exit" << endl;
         cout << "Enter choice: ";
         cin >> choice;
@@ -60,69 +71,108 @@ int main() {
         if (choice == 0) break;
         BasicBenchmark::printHeader();
 
+        // 1. Array Stack
         auto runArrayStack = [&]() {
             ods::ArrayStack<int> s;
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_LG; ++i) s.push(rand());
-                for(int i = 0; i < N_LG; ++i) s.pop();
+                for(int i = 0; i < LargeNum; ++i) s.push(rand());
+                for(int i = 0; i < LargeNum; ++i) s.pop();
             });
-            BasicBenchmark::printLine("ArrayStack", "Push/Pop", N_LG, t);
+            BasicBenchmark::printLine("ArrayStack", "Push/Pop", LargeNum, t);
         };
 
+        // 2. Array Deque
         auto runArrayDeque = [&]() {
-            ArrayDeque<int> d;
+            ods::ArrayDeque<int> d;
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_LG; ++i) d.addLast(rand()); 
-                for(int i = 0; i < N_LG; ++i) d.removeFirst(); 
+                for(int i = 0; i < LargeNum; ++i) d.addLast(rand()); 
+                for(int i = 0; i < LargeNum; ++i) d.removeFirst(); 
             });
-            BasicBenchmark::printLine("ArrayDeque", "AddL/RemF", N_LG, t);
+            BasicBenchmark::printLine("ArrayDeque", "AddL/RemF", LargeNum, t);
         };
 
+        // 3. SkipList
         auto runSkipList = [&]() {
             ods::SkipList<int> sk;
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_MD; ++i) sk.add(rand());
+                for(int i = 0; i < MediumNum; ++i) sk.add(rand());
             });
-            BasicBenchmark::printLine("SkipList", "Insert", N_MD, t);
+            BasicBenchmark::printLine("SkipList", "Insert", MediumNum, t);
         };
 
+        // 4. Chained Hash Table
         auto runHashTable = [&]() {
-            ods::ChainedHashTable<int> h(N_LG); 
+            ods::ChainedHashTable<int> h; 
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_LG; ++i) h.add(rand());
+                for(int i = 0; i < LargeNum; ++i) h.add(rand());
             });
-            BasicBenchmark::printLine("HashTable", "Insert", N_LG, t);
+            BasicBenchmark::printLine("HashTable", "Insert", LargeNum, t);
         };
 
+        // 5. Meldable Heap
         auto runMeldableHeap = [&]() {
-            MeldableHeap<int> mh;
+            ods::MeldableHeap<int> mh;
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_MD; ++i) mh.add(rand());
-                for(int i = 0; i < N_MD; ++i) mh.remove();
+                for(int i = 0; i < MediumNum; ++i) mh.add(rand());
+                for(int i = 0; i < MediumNum; ++i) mh.remove();
             });
-            BasicBenchmark::printLine("MeldableHeap", "Add/Rem", N_MD, t);
+            BasicBenchmark::printLine("MeldableHeap", "Add/Rem", MediumNum, t);
         };
 
+        // 6. Adjacency Matrix
         auto runAdjacencyMatrix = [&]() {
-            ods::AdjacencyMatrix g(N_SM);
+            ods::AdjacencyMatrix g(SmallNum);
             double t = BasicBenchmark::measure([&]() {
-                for(int i = 0; i < N_SM - 1; ++i) g.addEdge(i, i+1);
+                for(int i = 0; i < SmallNum - 1; ++i) g.addEdge(i, i+1);
             });
-            BasicBenchmark::printLine("AdjacencyMatrix", "AddEdge", N_SM, t);
+            BasicBenchmark::printLine("AdjMatrix", "AddEdge", SmallNum, t);
+        };
+
+        // 7. SLList Queue
+        auto runSLLQueue = [&]() {
+            ods::SLListQueue<int> q;
+            double t = BasicBenchmark::measure([&]() {
+                for(int i = 0; i < LargeNum; ++i) q.enqueue(rand());
+                for(int i = 0; i < LargeNum; ++i) q.dequeue();
+            });
+            BasicBenchmark::printLine("SLLQueue", "Enq/Deq", LargeNum, t);
+        };
+
+        // 8. Red-Black Tree
+        auto runRBT = [&]() {
+            ods::RedBlackTree rbt;
+            double t = BasicBenchmark::measure([&]() {
+                for(int i = 0; i < MediumNum; ++i) rbt.insertValue(rand());
+            });
+            BasicBenchmark::printLine("RedBlackTree", "BalancedIns", MediumNum, t);
+        };
+
+        // 9. Doubly Linked List
+        auto runDLList = [&]() {
+            ods::DLList<int> dll;
+            double t = BasicBenchmark::measure([&]() {
+                for(int i = 0; i < MediumNum; ++i) dll.add(0, rand());
+                for(int i = 0; i < MediumNum; ++i) dll.remove(0);
+            });
+            BasicBenchmark::printLine("DLList", "HeadAdd/Rem", MediumNum, t);
         };
 
         switch (choice) {
             case 1: runArrayStack(); break;
             case 2: runArrayDeque(); break;
-            case 3: runSkipList();  break;
+            case 3: runSkipList();   break;
             case 4: runHashTable();  break;
-            case 5: runMeldableHeap();  break;
+            case 5: runMeldableHeap(); break;
             case 6: runAdjacencyMatrix(); break;
-            case 9:
+            case 7: runSLLQueue(); break;
+            case 8: runRBT(); break;
+            case 9: runDLList(); break;
+            case 10:
                 runArrayStack(); runArrayDeque(); runSkipList(); 
                 runHashTable(); runMeldableHeap(); runAdjacencyMatrix();
+                runSLLQueue(); runRBT(); runDLList();
                 break;
-            default: cout << "Invalid choice or implementation missing." << endl;
+            default: cout << "Invalid choice." << endl;
         }
     }
     return 0;

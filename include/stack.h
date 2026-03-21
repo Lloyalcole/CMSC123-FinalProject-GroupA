@@ -1,4 +1,6 @@
-#pragma once
+#ifndef STACK_H
+#define STACK_H
+
 #include <cstddef>
 
 namespace ods {
@@ -14,3 +16,5 @@ namespace ods {
         virtual void clear() = 0;        
     };
 }
+
+#endif

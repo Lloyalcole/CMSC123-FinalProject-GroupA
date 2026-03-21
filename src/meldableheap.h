@@ -5,6 +5,7 @@
 
 using namespace std;
 
+namespace ods {
 template <typename T>
 class MeldableHeap : public PriorityQueue<T>
 {
@@ -129,3 +130,4 @@ public:
 
     size_t size() const override { return n; }
 };
+}
