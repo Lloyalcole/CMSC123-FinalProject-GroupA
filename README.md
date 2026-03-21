@@ -301,15 +301,15 @@ g++ -std=c++11 -O2 benchmarks/benchmark.cpp -o bench && ./bench
  
 | Structure | Operation | Count | Time (ms) |
 |---|---|---|---|
-| ArrayStack | Push + Pop | 1,000,000 | TBD |
-| ArrayDeque | AddLast + RemoveFirst | 1,000,000 | TBD |
-| SLListQueue | Enqueue + Dequeue | 1,000,000 | TBD |
-| ChainedHashTable | Insert | 1,000,000 | TBD |
-| DLList | Head Add + Head Remove | 100,000 | TBD |
-| SkipList | Insert | 100,000 | TBD |
-| MeldableHeap | Add + Remove | 100,000 | TBD |
-| RedBlackTree | Balanced Insert | 100,000 | TBD |
-| AdjacencyMatrix | AddEdge | 1,000 | TBD |
+| ArrayStack | Push + Pop | 100,000 | 4.1793 |
+| ArrayDeque | AddLast + RemoveFirst | 100,000 | 5.7922 |
+| SLListQueue | Enqueue + Dequeue | 100,000 | 11.6899 |
+| ChainedHashTable | Insert | 100,000 | 145.6715 |
+| DLList | Head Add + Head Remove | 10,000 | 1.1600 |
+| SkipList | Insert | 10,000 | 11.1054 |
+| MeldableHeap | Add + Remove | 10,000 | 13.2600 |
+| RedBlackTree | Balanced Insert | 10,000 | 3.4716 |
+| AdjacencyMatrix | AddEdge | 1,000 | 0.0792 |
  
 > Benchmarks will be updated once all implementations are finalized.
  
@@ -373,6 +373,14 @@ Please keep code style consistent with existing files — templated classes, `us
 - **Cole** — [GitHub](https://github.com/Lloyalcole)
 - **Nino** — [GitHub](https://github.com/Geeyannn)
 - **Drebin** — [GitHub](https://github.com/Leftakoyaki)
+
+## Authors
+
+| Hannah | Cole | Nino | Drebin |
+|---|---|---|---|
+| [@hannah](https://github.com/hxnie0) | [@cole](https://github.com/Lloyalcole) | [@nino](https://github.com/Geeyannn) | [@drebin](https://github.com/Leftakoyaki) |
+
+Built for CMSC 123 under Sir Eli Tan.
 
 Built for CMSC 123 requirement under Sir Eli Adrian Tan.
 
