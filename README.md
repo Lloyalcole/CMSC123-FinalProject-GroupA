@@ -4,7 +4,7 @@
   </a>
 
   <h1>Mini Library of Data Structures in C++</h1>
-  <p>A small, open-source collection of data structure implementations written in C++ — built for CMSC 123 as a final project.</p>
+  <p>A small, open-source collection of data structure implementations written in C++ built for CMSC 123 as a final project.</p>
 
   [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 </div>
