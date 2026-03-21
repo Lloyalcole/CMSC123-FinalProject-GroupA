@@ -4,6 +4,7 @@
 
 using namespace std;
 
+namespace ods {
 template <typename T>
 class SLListQueue
 {
@@ -99,3 +100,4 @@ public:
         count = 0;
     }
 };
+}

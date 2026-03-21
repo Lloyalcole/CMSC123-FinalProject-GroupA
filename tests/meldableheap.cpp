@@ -3,6 +3,7 @@
 #include "../src/meldableheap.h"
 
 using namespace std;
+using namespace ods; 
 
 int main() {
     MeldableHeap<int> heap;
@@ -47,7 +48,7 @@ int main() {
     heap2.add(88);
     cout << "Second heap has " << heap2.size() << " scores: 55, 70, 88\n";
     heap.absorb(heap2);
-    cout << "After absorb — main heap size: " << heap.size() << "\n";
+    cout << "After absorb, main heap size: " << heap.size() << "\n";
     cout << "Second heap empty? " << (heap2.isEmpty() ? "Yes, absorbed." : "No, still has elements.") << "\n";
 
     cout << "\n Sir Eli processes all remaining scores in order:\n   ";

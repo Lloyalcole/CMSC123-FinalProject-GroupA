@@ -1,8 +1,10 @@
 #include <iostream>
 #include <stdexcept>
+#include <string>
 #include "../src/arraydeque.h"
 
 using namespace std;
+using namespace ods; 
 
 template <typename T>
 void printRow(ArrayDeque<T>& dq) {

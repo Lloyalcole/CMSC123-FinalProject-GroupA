@@ -3,6 +3,7 @@
 #include "../src/dllist.h"
 
 using namespace std;
+using namespace ods;
 
 void printMenu() {
     cout << "\n--- Welcome to Group A's Doubly Linked List ---" << endl;
@@ -28,7 +29,7 @@ void printList(DLList<T>& list) {
 }
 
 int main() {
-    DLList<string> list;
+    ods::DLList<string> list;
     int choice;
     size_t index;
     string value;
@@ -39,103 +40,67 @@ int main() {
         if (!(cin >> choice)) break;
 
         switch (choice) {
-            case 1: // add at index
+            case 1: 
                 cout << "Enter index: ";
                 cin >> index;
                 cout << "Enter value: ";
                 cin.ignore();
                 getline(cin, value);
-
                 try {
                     list.add(index, value);
                     cout << "Added \"" << value << "\" at index " << index << endl;
                 } catch (const out_of_range&) {
-                    cout << "Error: Index out of range. Valid indices are [0 to "
-                         << list.size() << "]" << endl;
+                    cout << "Error: Index out of range." << endl;
                 }
                 break;
-
-            case 2: // basic add (add to the tail)
+            case 2:
                 cout << "Enter value: ";
                 cin.ignore();
                 getline(cin, value);
-
                 list.add(list.size(), value);
-                cout << "Added \"" << value << "\" to the end" << endl;
                 break;
-
-            case 3: // remove
+            case 3:
                 cout << "Enter index to remove: ";
                 cin >> index;
-
                 try {
                     cout << "Removed: " << list.remove(index) << endl;
                 } catch (const out_of_range&) {
-                    if (list.size() == 0) {
-                        cout << "Error: List is empty. No valid indices." << endl;
-                    } else {
-                        cout << "Error: Index out of range. Valid indices are [0 to "
-                             << list.size() - 1 << "]" << endl;
-                    }
+                    cout << "Error: Index out of range." << endl;
                 }
                 break;
-
-            case 4: // get value
+            case 4:
                 cout << "Enter index to get: ";
                 cin >> index;
-
                 try {
-                    cout << "Value at index " << index << ": " << list.get(index) << endl;
+                    cout << "Value: " << list.get(index) << endl;
                 } catch (const out_of_range&) {
-                    if (list.size() == 0) {
-                        cout << "Error: List is empty. No valid indices." << endl;
-                    } else {
-                        cout << "Error: Index out of range. Valid indices are [0 to "
-                             << list.size() - 1 << "]" << endl;
-                    }
+                    cout << "Error: Out of range." << endl;
                 }
                 break;
-
-            case 5: // set new value
+            case 5:
                 cout << "Enter index to set: ";
                 cin >> index;
                 cout << "Enter new value: ";
                 cin.ignore();
                 getline(cin, value);
-
                 try {
                     cout << "Old value: " << list.set(index, value) << endl;
                 } catch (const out_of_range&) {
-                    if (list.size() == 0) {
-                        cout << "Error: List is empty. No valid indices." << endl;
-                    } else {
-                        cout << "Error: Index out of range. Valid indices are [0 to "
-                             << list.size() - 1 << "]" << endl;
-                    }
+                    cout << "Error: Out of range." << endl;
                 }
                 break;
-
-            case 6: // size of the list
+            case 6:
                 cout << "Size: " << list.size() << endl;
                 break;
-
-            case 7: // print list
-                cout << "[";
-                for (size_t i = 0; i < list.size(); ++i) {
-                    if (i > 0) cout << " <-> ";
-                    cout << list.get(i);
-                }
-                cout << "]" << endl;
+            case 7:
+                printList(list);
                 break;
-
-            case 8: // quit test
+            case 8:
                 running = false;
                 break;
-
             default:
                 cout << "Invalid choice!" << endl;
         }
     }
-
     return 0;
 }

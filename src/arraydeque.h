@@ -1,16 +1,17 @@
-#pragma once
+#ifndef ARRAYDEQUE_H
+#define ARRAYDEQUE_H
+
 #include "../include/array.h"
 #include "../include/deque.h"
 #include "../include/list.h"
 #include <stdexcept>
 
-using namespace std;
-
+namespace ods {
 template <typename T>
 class ArrayDeque : public Deque<T>, public List<T>
 {
 private:
-    array<T> data;
+    ods::array<T> data;
     size_t capacity;
     size_t front;
     size_t count;
@@ -20,12 +21,12 @@ private:
     void resize(size_t newCapacity)
     {
         if (newCapacity < MIN_CAPACITY) newCapacity = MIN_CAPACITY;
-        array<T> newData(newCapacity);
+        ods::array<T> newData(newCapacity);
         for (size_t i = 0; i < count; ++i)
         {
             newData[i] = data[(front + i) % capacity];
         }
-        data = newData;
+        data = newData; 
         capacity = newCapacity;
         front = 0;
     }
@@ -38,7 +39,6 @@ public:
         count = 0;
     }
 
-    // --- Deque<T> methods ---
     void addFirst(const T& x) override
     {
         if (count == capacity) resize(capacity + capacity / 2);
@@ -57,7 +57,7 @@ public:
 
     T removeFirst() override
     {
-        if (isEmpty()) throw out_of_range("Deque is empty");
+        if (isEmpty()) throw std::out_of_range("Deque is empty");
         T val = data[front];
         front = (front + 1) % capacity;
         --count;
@@ -69,7 +69,7 @@ public:
 
     T removeLast() override
     {
-        if (isEmpty()) throw out_of_range("Deque is empty");
+        if (isEmpty()) throw std::out_of_range("Deque is empty");
         size_t back = (front + count - 1) % capacity;
         T val = data[back];
         --count;
@@ -81,13 +81,13 @@ public:
 
     const T peekFirst() const override
     {
-        if (isEmpty()) throw out_of_range("Deque is empty");
+        if (isEmpty()) throw std::out_of_range("Deque is empty");
         return data[front];
     }
 
     const T peekLast() const override
     {
-        if (isEmpty()) throw out_of_range("Deque is empty");
+        if (isEmpty()) throw std::out_of_range("Deque is empty");
         size_t back = (front + count - 1) % capacity;
         return data[back];
     }
@@ -108,10 +108,9 @@ public:
         return count;
     }
 
-    // --- List<T> methods ---
     void add(const size_t i, const T& x) override
     {
-        if (i > count) throw out_of_range("Index out of range");
+        if (i > count) throw std::out_of_range("Index out of range");
         if (count == capacity) resize(capacity + capacity / 2);
 
         if (i == 0) {
@@ -141,7 +140,7 @@ public:
 
     T remove(const size_t i) override
     {
-        if (i >= count) throw out_of_range("Index out of range");
+        if (i >= count) throw std::out_of_range("Index out of range");
 
         if (i == 0) {
             return removeFirst();
@@ -176,16 +175,19 @@ public:
 
     T get(const size_t i) const override
     {
-        if (i >= count) throw out_of_range("Index out of range");
+        if (i >= count) throw std::out_of_range("Index out of range");
         return data[(front + i) % capacity];
     }
 
     T set(const size_t i, const T& x) override
     {
-        if (i >= count) throw out_of_range("Index out of range");
+        if (i >= count) throw std::out_of_range("Index out of range");
         size_t index = (front + i) % capacity;
         T old = data[index];
         data[index] = x;
         return old;
     }
 };
+}
+
+#endif

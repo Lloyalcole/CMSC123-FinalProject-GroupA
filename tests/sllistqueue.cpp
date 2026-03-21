@@ -3,6 +3,7 @@
 #include "../src/sllistqueue.h"
 
 using namespace std;
+using namespace ods; 
 
 void printMenu() {
     cout << "\n--- Welcome to Group A's Singly Linked List Queue ---" << endl;
@@ -40,7 +41,7 @@ void printQueue(SLListQueue<T>& q) {
 }
 
 int main() {
-    SLListQueue<string> q;
+    SLListQueue<string> q; 
     int choice;
     string value;
     bool running = true;
@@ -61,19 +62,19 @@ int main() {
 
             case 2:
                 cout << "You chose to dequeue!" << endl;
-                if (!q.isEmpty()) {
+                try {
                     cout << "Dequeued: " << q.dequeue() << endl;
-                } else {
-                    cout << "Error: Cannot dequeue. The queue is empty!" << endl;
+                } catch (const out_of_range& e) {
+                    cout << "Error: " << e.what() << endl;
                 }
                 break;
 
             case 3:
                 cout << "You chose to get the front!" << endl;
-                if (!q.isEmpty()) {
+                try {
                     cout << "Front: " << q.front() << endl;
-                } else {
-                    cout << "Error: The queue is empty!" << endl;
+                } catch (const out_of_range& e) {
+                    cout << "Error: " << e.what() << endl;
                 }
                 break;
 
@@ -87,22 +88,18 @@ int main() {
                 cout << (q.isEmpty() ? "Queue is empty" : "Queue is NOT empty") << endl;
                 break;
 
-            case 6:
+            case 6: {
                 char confirm;
                 cout << "Did you really choose to clear the queue? (Y/N): ";
                 cin >> confirm;
-                while (confirm != 'Y' && confirm != 'y' &&
-                    confirm != 'N' && confirm != 'n') {
-                    cout << "Invalid input. Please enter Y or N: ";
-                    cin >> confirm;
-                }
                 if (confirm == 'Y' || confirm == 'y') {
                     q.clear();
                     cout << "Queue cleared." << endl;
                 } else {
                     cout << "Yeah, I thought so too." << endl;
                 }
-                break;           
+                break;
+            }
 
             case 7:
                 cout << "Current queue: ";
