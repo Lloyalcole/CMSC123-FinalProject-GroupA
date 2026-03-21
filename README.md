@@ -240,7 +240,9 @@ make all
  
 Each data structure has its own test file under `tests/`. Tests come in two styles:
 
-![dsameme](dsameme.gif)
+<div align="center">
+  <img src="dsameme.gif" alt="dsameme"/>
+</div>
  
 **Narrative tests** — operations play out as a story, output is automatic:
  
