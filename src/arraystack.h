@@ -45,11 +45,5 @@ namespace ods {
         bool empty() const override { return n == 0; }
 
         void clear() override { n = 0; }
-        
-        // Debug helper: returns element at index i
-        const T& at(std::size_t i) const {
-            if (i >= n) throw std::out_of_range("Index out of bounds");
-            return a[i];
-        }
     };
 }
