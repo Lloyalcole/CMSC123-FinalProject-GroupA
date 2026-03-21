@@ -322,6 +322,8 @@ g++ -std=c++11 -O2 benchmarks/benchmark.cpp -o bench && ./bench
 ## Directory Structure
  
 ```
+benchmarks/
+  centralbenchmark.cpp
 include/
   deque.h
   graph.h
@@ -352,8 +354,9 @@ tests/
   skiplist.cpp
   sllist.cpp
 LICENSE
-Makefile
 README.md
+banner.png
+dsameme.gif
 ```
  
 ---
