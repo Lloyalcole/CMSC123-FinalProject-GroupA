@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://github.com/Lloyalcole/CMSC123-FinalProject-GroupA">
-    <img src="banner.png" alt="Group A Banner" width="800"/>
-  </a>
+     <img src="banner.png" alt="banner" width="400"/>
+  </div>
 
   <h1>Mini Library of Data Structures in C++</h1>
   <p>A small, open-source collection of data structure implementations written in C++ built for CMSC 123 as a final project.</p>
