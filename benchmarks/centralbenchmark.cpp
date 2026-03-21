@@ -4,15 +4,12 @@
 #include <string>
 #include <cstdlib> 
 
-// Headers provided in your snippet
 #include "../src/adjacencymatrix.h"
 #include "../src/arraydeque.h"
 #include "../src/arraystack.h"
 #include "../src/chainedhashtable.h"
 #include "../src/meldableheap.h"
 #include "../src/skiplist.h"
-
-// Note: Ensure these exist in your include path if you uncomment them
 // #include "../src/linkedlistqueue.h" 
 // #include "../src/redblacktree.h"
 
