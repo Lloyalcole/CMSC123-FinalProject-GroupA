@@ -65,7 +65,7 @@ The goal was to deeply understand how these structures work under the hood, and 
  
 ### Why build this from scratch?
  
-Understanding a data structure means being able to implement it, not just use it. This library exists as proof of that understanding. Every structure here was written by hand — no copying from the textbook, no wrapping STL.
+Understanding a data structure means being able to implement it, not just use it. This library exists as proof of that understanding. Every structure here was written by hand (with the help of AI of course), no copying from the textbook, no wrapping STL.
  
 ### What makes this different from the textbook?
  
