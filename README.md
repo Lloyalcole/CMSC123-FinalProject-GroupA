@@ -369,18 +369,10 @@ Please keep code style consistent with existing files — templated classes, `us
 
 ## Authors
 
-- **Hannah** — [GitHub](https://github.com/hxnie0)
-- **Cole** — [GitHub](https://github.com/Lloyalcole)
-- **Nino** — [GitHub](https://github.com/Geeyannn)
-- **Drebin** — [GitHub](https://github.com/Leftakoyaki)
-
-## Authors
-
-| Hannah | Cole | Nino | Drebin |
-|---|---|---|---|
-| [@hannah](https://github.com/hxnie0) | [@cole](https://github.com/Lloyalcole) | [@nino](https://github.com/Geeyannn) | [@drebin](https://github.com/Leftakoyaki) |
-
-Built for CMSC 123 under Sir Eli Tan.
+- **Hannah** — [@hxnie0](https://github.com/hxnie0)
+- **Cole** — [@Lloyalcole](https://github.com/Lloyalcole)
+- **Nino** — [@Geeyannn](https://github.com/Geeyannn)
+- **Drebin** — [@Leftakoyaki](https://github.com/Leftakoyaki)
 
 Built for CMSC 123 requirement under Sir Eli Adrian Tan.
 
