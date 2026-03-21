@@ -233,17 +233,56 @@ make all
  
 ## Running Tests
  
-Each data structure has its own test file under `tests/`. Tests are written as short stories — characters are added, removed, and queried through the data structure to verify correctness and cover edge cases including exceptions.
+Each data structure has its own test file under `tests/`. Tests come in two styles:
+ 
+**Narrative tests** — operations play out as a story, output is automatic:
  
 ```bash
-# Run ArrayDeque test
+# ArrayDeque — Sir Eli checks the repo
 g++ -std=c++11 tests/arraydeque.cpp -o test && ./test
  
-# Run MeldableHeap test
+# MeldableHeap — Sir Eli grades the class
 g++ -std=c++11 tests/meldableheap.cpp -o test && ./test
 ```
  
-Expected output follows a narrative format — each operation is described in plain language followed by the result.
+**Interactive menu tests** — you enter values and choose operations manually:
+ 
+```bash
+# DLList
+g++ -std=c++11 tests/dllist.cpp -o test && ./test
+ 
+# ArrayStack
+g++ -std=c++11 tests/arraystack.cpp -o test && ./test
+ 
+# SLListQueue
+g++ -std=c++11 tests/sllist.cpp -o test && ./test
+ 
+# ChainedHashTable
+g++ -std=c++11 tests/chainedhashtable.cpp -o test && ./test
+ 
+# SkipList
+g++ -std=c++11 tests/skiplist.cpp -o test && ./test
+ 
+# RedBlackTree
+g++ -std=c++11 tests/redblacktrees.cpp -o test && ./test
+ 
+# AdjacencyMatrix
+g++ -std=c++11 tests/adjacencymatrix.cpp -o test && ./test
+```
+ 
+### What each test covers
+ 
+| Test File | Style | Operations Tested |
+|---|---|---|
+| `arraydeque.cpp` | Narrative | addFirst, addLast, add, peekFirst, peekLast, get, set, removeFirst, removeLast, remove, size, isEmpty, clear, exceptions |
+| `meldableheap.cpp` | Narrative | add, peek, remove, absorb, isEmpty, size, exceptions |
+| `dllist.cpp` | Interactive | add at index, add to tail, remove, get, set, size, print |
+| `arraystack.cpp` | Interactive | push, pop, peek, size, isEmpty, clear |
+| `sllist.cpp` | Interactive | enqueue, dequeue, front, size, isEmpty, clear, print |
+| `chainedhashtable.cpp` | Interactive | add, remove, contains |
+| `skiplist.cpp` | Interactive | add, remove, contains |
+| `redblacktrees.cpp` | Interactive | insertValue, neighbours, hasEdge, edgeWeight |
+| `adjacencymatrix.cpp` | Interactive | addEdge, removeEdge, addVertex, removeVertex, display matrix |
  
 ---
  
