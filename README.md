@@ -300,7 +300,7 @@ g++ -std=c++11 tests/adjacencymatrix.cpp -o test && ./test
 Benchmarks measure the time taken for large-scale operations on each data structure. Results are in milliseconds. To run benchmarks yourself:
  
 ```bash
-g++ -std=c++11 -O2 benchmarks/benchmark.cpp -o bench && ./bench
+g++ -std=c++11 -O2 benchmarks/centralbenchmark.cpp -o bench && ./bench
 ```
  
 | Structure | Operation | Count | Time (ms) |
@@ -314,8 +314,6 @@ g++ -std=c++11 -O2 benchmarks/benchmark.cpp -o bench && ./bench
 | MeldableHeap | Add + Remove | 10,000 | 13.2600 |
 | RedBlackTree | Balanced Insert | 10,000 | 3.4716 |
 | AdjacencyMatrix | AddEdge | 1,000 | 0.0792 |
- 
-> Benchmarks will be updated once all implementations are finalized.
  
 ---
  
